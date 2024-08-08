@@ -6,21 +6,32 @@ import './App.css'
 function App() {
   const [us, SetUs] = useState({
     userName:"",
-    user:""
+    userGmail:""
   })
-  const Submit=()=>{
-    console.log(us.name)
-    console.log(us.userName)
-  }
+  const [aux, SetAux] = useState([])
   const handle=(event)=>{
     const { name, value } = event.target;
  SetUs({...us,[name]:value})
+ console.log(us)
+  }
+  const send=()=>{
+    if(us["userName"]!=""){
+      console.log("el Nombre del usuario es: "+us["userName"])
+      console.log("el Gmail del usuario es: "+us["userGmail"])
+    }
+    else{
+      console.log("Inserte Nombre de usuario")
+    }
   }
   return (
     <>
-      <form onSubmit={Submit}>
+    <form onSubmit={send}>
+      <h2>Inserte Nombre de usuario</h2>
       <input type='text' name='userName' value={us.userName} onChange={handle}></input>
-      <input type='text' name='user' value={us.user} onChange={handle}></input>
+      <h2>Inserte Gmail del usuario</h2>
+      <input type='email' name='userGmail' value={us.user} onChange={handle}></input>
+      <br></br>
+      <button type='submit'>enviar</button>
       </form>
     </>
   )
